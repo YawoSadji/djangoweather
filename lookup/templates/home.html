@@ -2,6 +2,21 @@
 
 {% block content %}
 
-<h1>Hello World!</h1>
+<h1>Air Quality Index in your area</h1>
+<br/>
+{% if api %}
+    {% if api == "Error..." %}
+        There was an error, please try again...
+    {% else %}
 
+<div class="p-5 mb-4 {{category_color}} rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">{{ api.0.Category.Name }}</h1>
+        <p class="col-md-8 fs-4">Current {{ api.0.ReportingArea }}  Air Quality: {{ api.0.AQI }}</p>
+        <h4>State: {{ api.0.StateCode }}</h4>
+        <p>{{category_description}}</p>
+      </div>
+</div>
+    {% endif %}
+{% endif %}
 {% endblock %}
