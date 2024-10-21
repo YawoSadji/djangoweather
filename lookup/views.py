@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+import creds
 # Create your views here.
 def home(request):
     import json
@@ -7,7 +7,7 @@ def home(request):
 
     if request.method == "POST":
         zipcode = request.POST['zipcode']
-        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode="+ zipcode +"&distance=10&API_KEY=BB342B6F-E557-4007-AC17-E0CB4B645C4D")
+        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode="+zipcode+""&distance=10&API_KEY="+creds.api_key)
         try:
             api = json.loads(api_request.content)
         except Exception as e:
